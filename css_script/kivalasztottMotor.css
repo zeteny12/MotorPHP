@@ -1,0 +1,84 @@
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../kepek/fooldal_hatter.jpg');
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: #fff;
+    }
+    p{
+        display: inline;
+        font-style: italic;
+        text-decoration: underline;
+    }
+    #index_szoveg{
+        text-decoration: none;
+    }
+    #kivalaszott_motor_cim {
+        font-family: 'Lilita One', sans-serif;
+        text-transform: uppercase;
+        font-style: italic;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        font-size: 80px;
+        margin-top: 50px;
+    }
+    #kivalaszott_motor_kep{
+        width: 420px;
+        height: 270px;
+        border-radius: 30px;
+        box-shadow: 3px 3px 8px #fff;
+    }
+    .container{
+        margin-top: 40px;
+    }
+    table {
+        position: relative;
+        z-index: 1;
+        color: #000;
+    }
+    th{
+        font-size: 20px;
+        border: 2px solid #fff;
+        background-color: #a89ca8;
+        padding: 2px 15px;
+    }
+    td{
+        text-align: center;
+        border: 2px solid #fff;
+        vertical-align: middle;
+        font-size: 20px;
+        background-color: #d7d2d7;
+        padding: 0 10px;
+    }
+    #vasarlas_div {
+        margin-top: 97px;
+        display: flex;
+        justify-content: space-between;
+    }
+    #vasarlas_div_ar {
+        margin-left: auto;
+        margin-right: 100px;
+        font-family: 'Lilita One', sans-serif;
+        font-style: italic;
+        font-weight: bold;
+        color: #fff;
+        font-size: 60px;
+    }
+    .btn-success{
+        width: 200px;
+        border-radius: 15px;
+    }
+    .btn-success:hover{
+        transform: translateX(10px);
+        transition: .2s;
+    }
+    .btn-success:not(:hover){
+        transition: 0.2s;
+        transform: scale(1);
+    }

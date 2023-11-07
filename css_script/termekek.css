@@ -1,0 +1,37 @@
+.card {
+        margin: 10px;
+        width: 300px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .row{
+        justify-content: center; 
+    }
+    .card-img-top{
+        padding-top: 10px;
+        width: 270px;
+        height: 180px;
+        border-radius: 20px;
+    }
+    .card-title{
+        font-family: 'Lilita One', sans-serif;
+        font-weight: bold;
+    }
+    .alcim{
+        font-weight: bold;
+        text-decoration: underline;
+        display: inline;
+    }
+    .btn-primary:hover{
+    transform: translateY(-8px);
+    transition: .2s;
+    }
+    .btn-primary:not(:hover){
+        transition: 0.2s;
+        transform: scale(1);
+    }
+    #index_szoveg{
+        font-weight: bold;
+        display: inline;
+        text-decoration: none;
+    }

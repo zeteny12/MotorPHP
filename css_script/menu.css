@@ -1,0 +1,15 @@
+.navlist{
+        display: flex;
+        list-style-type: none;
+    }
+    .navlist a{
+        text-decoration: none;
+        font-size: 30px;
+        color: #fff;
+        margin-left: 60px;
+        border-bottom: 2px solid transparent;
+        transition: all .55s ease;
+    }
+    .navlist a:hover{
+        border-bottom: 2px solid #fff;
+    }
