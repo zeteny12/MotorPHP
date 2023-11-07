@@ -25,4 +25,4 @@
     </ul>
 </navbar>
 
-<link rel="stylesheet" href="./css_script/menu.js"/>
+ <script src="./css_script/menu.js"></script>

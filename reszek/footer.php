@@ -6,3 +6,5 @@
         <p>Maták Etele Zétény</p>
     </div>
 </footer>
+
+<script src="./css_script/footer.js"></script>
