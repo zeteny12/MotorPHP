@@ -15,6 +15,9 @@ switch ($menu) {
     case 'Kilepes':
         require_once './oldalak/logout.php';
         break;
+    case 'kivalasztottMotor':
+        require_once './oldalak/kivalasztottMotor.php';
+        break;
 
     case 'Főoldal':
         require_once './reszek/header.php';

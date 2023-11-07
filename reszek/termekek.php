@@ -23,10 +23,11 @@
                             '<p class="card-text"><p class="alcim">Jogosítvány:</p> ' . $row['jogositvany'] . '</p>' .
                             '<p class="card-text"><p class="alcim">Teljesítmény</p><p id="index_szoveg">(kW):</p> ' . $row['kW'] . '</p>' .
                             '<p class="card-text"><p class="alcim">Nálunk:</p> ' . $row['nalunk'] . '</p>' .
-                            '<p class="card-text"><p class="alcim">Ár:</p> ' . $row['ar'] . ' Ft</p>' .
-                            '<a href="./oldalak/kivalasztottMotor.php?id=' . $row['motorid'] . '" class="btn btn-primary">Vásárlás</a>
-                         </div>
-                        </div>';
+                            '<p class="card-text"><p class="alcim">Ár:</p> ' . $row['ar'] . ' Ft</p>'.
+                            '<a href="index.php?menu=kivalasztottMotor&id=' . $row['motorid'] . '" class="btn btn-primary">Vásárlás</a>'.
+                            '</div>'.
+                            '</div>';
+                         
                 echo $card; 
             }
         ?>

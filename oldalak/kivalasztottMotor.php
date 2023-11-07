@@ -1,32 +1,18 @@
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-    <link rel="stylesheet" href="../css_script/kivalasztottMotor.css"/>
-    <link rel="stylesheet" href="../css_script/footer.css"/>
-    <title>Eladó motorok | Vásárlás</title>
-</head>
-
+<link rel="stylesheet" href="./css_script/kivalasztottMotor.css"/>
 
 <?php
-    require_once '../Class/Database.php';
-    $db = new Database("localhost", "root", "", "eladomotorok");
+    $id= filter_input(INPUT_GET, "id");
     
-    if (isset($_GET['id'])) {
-    $kivalasztottMotor = $_GET['id'];
+    $motorAdatok = $db->getKivalasztottMotor($id);
 
-    $motorAdatok = $db->getKivalasztottMotor($kivalasztottMotor);
-
-    if ($motorAdatok) {
+    if ($motorAdatok!=null) {
         echo '<h1 id="kivalaszott_motor_cim">'.$motorAdatok['gyarto'].' '.$motorAdatok['tipus'].' ('.$motorAdatok['evjarat'].')</h1>';
         
         
         echo '<div class="container">';
             echo '<div class="row d-flex">';
                 echo '<div class="col-4">';
-                    $image = file_exists("../kepek/" . $motorAdatok['tipus'] . ".jpg") ? "../kepek/" . $motorAdatok['tipus'] . ".jpg" : "../kepek/noimage.jpg";
+                    $image = file_exists("./kepek/" . $motorAdatok['tipus'] . ".jpg") ? "./kepek/" . $motorAdatok['tipus'] . ".jpg" : "./kepek/noimage.jpg";
                     echo '<img id="kivalaszott_motor_kep" src="' . $image . '" alt="' . $motorAdatok['tipus'] . ' képe" title="' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . '">';
                 echo '</div>';
                 echo '<div class="col-1"></div>';
@@ -58,21 +44,19 @@
                             </tr>
                           </table> ';
                     
-                    echo '<div id="vasarlas_div" class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <button type="button" class="btn btn-success">Vásárlás</button>
-                                </div>
+                    echo '<div id="vasarlas_div" class="d-flex justify-content-between align-items-center">';
+                                echo '<div>';
+                                if (isset($_SESSION['login']) && $_SESSION['login']) {
+                                    echo '<button type="button" class="btn btn-success">Vásárlás</button>';
+                                } else {
+                                    echo '<a href="index.php?menu=Bejelentkezes" class="btn btn-success">Bejelentkezés</a>';
+                                }
+                                echo '</div>
                                 <div id="vasarlas_div_ar" class="tablazat_ar">'.$motorAdatok['ar'].' Ft</div>
                             </div>';
-                    
                 echo '</div>';
             echo '</div>';
         echo '</div>';
-        
-        require_once '../reszek/footer.php';
     } else {
         echo 'A kiválasztott motor nem található.';
     }
-} else {
-    echo 'Nincs megadva motor azonosító.';
-}

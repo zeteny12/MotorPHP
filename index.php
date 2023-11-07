@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
 }
 
-require_once './reszek/head.php';
+    require_once './reszek/head.php';
 $menu = filter_input(INPUT_GET, "menu");
 ?>
 
