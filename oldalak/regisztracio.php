@@ -1,8 +1,5 @@
-<head>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./css_script/regisztracio.css"/>
-    <title>Eladó motorok | Regisztráció</title>
-</head>
+<link rel="icon" type="image/x-icon" href="./favicon.ico" />
+<link rel="stylesheet" href="./css_script/regisztracio.css"/>    
 
 <?php 
 if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)){

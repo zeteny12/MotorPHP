@@ -27,13 +27,13 @@ class Database {
             if ($pass==$row['password']){
                 $_SESSION['InputEmail'] = $row;
                 $_SESSION['login'] = true;
-                
+                header("Location: index.php");
             } else {
                 $_SESSION['InputEmail'] = '';
                 $_SESSION['login'] = false;
+                header("Location: index.php?menu=Bejelentkezes");
             }
             $result->free_result();
-            header("Location: index.php");
         }
         return false;
     }
