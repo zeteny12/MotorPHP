@@ -19,6 +19,14 @@ switch ($menu) {
     case 'kivalasztottMotor':
         require_once './oldalak/kivalasztottMotor.php';
         break;
+    
+    case 'Felhasznalo':
+        require_once './oldalak/Felhasznalo.php';
+        break;
+    
+    case 'MotorEladas':
+        require_once './oldalak/motoreladas.php';
+        break;
 
     case 'Főoldal':
         require_once './reszek/header.php';

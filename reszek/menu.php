@@ -5,9 +5,15 @@
         <li class="nav-item">
             <a href="index.php">Főoldal</a>
         </li>
+        <li class="nav-item">
+            <a class = "<?php echo ($menu == 'Rolunk' ? 'active' : ''); ?>" href="index.php?menu=Rolunk">Rólunk</a>
+        </li>
         <?php
         if ($_SESSION['login']){
             echo '<li class="nav-item">
+                    <a class = "'.($menu == 'Felhasznalo' ? ' active' : '').'" href="index.php?menu=Felhasznalo">Felhasználó</a>
+                  </li>
+                  <li class="nav-item">
                     <a class = "'.($menu == 'Kilepes' ? ' active' : '').'" href="index.php?menu=Kilepes">Kilépés</a>
                   </li>';
         } else {
@@ -19,9 +25,6 @@
                   </li>';
         }
         ?>
-        <li class="nav-item">
-            <a class = "<?php echo ($menu == 'Rolunk' ? 'active' : ''); ?>" href="index.php?menu=Rolunk">Rólunk</a>
-        </li>
     </ul>
 </navbar>
 
