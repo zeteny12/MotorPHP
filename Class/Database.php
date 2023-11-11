@@ -5,7 +5,6 @@ class Database {
     private $db = null;
     public $error = false;
     
-    //kérdéses
     public function __construct($host, $username, $pass, $db) {
         try {
             $this->db = new mysqli($host, $username, $pass, $db);
@@ -39,7 +38,6 @@ class Database {
     }
     
     public function register($vezeteknev, $keresztnev, $email, $password){
-        //$password = password_hash($pass1, PASSWORD_BCRYPT);
         $stmt = $this->db->prepare("INSERT INTO `users`(`vezeteknev`, `keresztnev`, `e-mail_cim`, `jelszo`, `userid`) VALUES (?,?,?,?,NULL)");
         $stmt->bind_param("ssss", $vezeteknev, $keresztnev, $email, $password);
         try{
@@ -52,9 +50,6 @@ class Database {
         } catch (Exception $ex) {
             $this->error = true;
         }
-        
-        
-
     }
     
     public function osszesmotor() {
@@ -72,6 +67,20 @@ class Database {
             return $result->fetch_assoc();
         } else {
             return null;
+        }
+    }
+    
+    public function hirdetesKeszitese($gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW) {
+        $stmt = $this->db->prepare("INSERT INTO `motor`(`gyarto`, `tipus`, `evjarat`, `allapot`, `kobcenti`, `jogositvany`, `ar`, `kW`, `nalunk`, `motorid`) VALUES (?,?,?,?,?,?,?,?,NULL,NULL)");
+        $stmt->bind_param("ssssssss", $gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW);
+        try{
+            if ($stmt->execute()){
+                echo 'Hirdetés sikeresen feladva!';
+            } else {
+                echo 'Hirdetés feladása sikertelen!';
+            }
+        } catch (Exception $ex) {
+            $this->error = true;
         }
     }
 }

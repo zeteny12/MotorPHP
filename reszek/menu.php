@@ -28,4 +28,4 @@
     </ul>
 </navbar>
 
- <script src="./css_script/menu.js"></script>
+<script src="./css_script/menu.js"></script>

@@ -1,4 +1,3 @@
-<link rel="icon" type="image/x-icon" href="./favicon.ico" />
 <link rel="stylesheet" href="./css_script/login.css"/>
     
 <?php 
