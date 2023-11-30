@@ -71,16 +71,18 @@ class Database {
     }
     
     public function hirdetesKeszitese($gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW) {
-        $stmt = $this->db->prepare("INSERT INTO `motor`(`gyarto`, `tipus`, `evjarat`, `allapot`, `kobcenti`, `jogositvany`, `ar`, `kW`, `nalunk`, `motorid`) VALUES (?,?,?,?,?,?,?,?,NULL,NULL)");
-        $stmt->bind_param("ssssssss", $gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW);
+        $stmt = $this->db->prepare("INSERT INTO `motor`(`gyarto`, `tipus`, `evjarat`, `allapot`, `kobcenti`, `jogositvany`, `ar`, `kW`) VALUES (?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssisisss", $gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW);
         try{
-            if ($stmt->execute()){
+            if ($stmt->execute()) {
                 echo 'Hirdetés sikeresen feladva!';
             } else {
-                echo 'Hirdetés feladása sikertelen!';
+                echo 'Hirdetés feladása sikertelen! Hiba: ' . $stmt->error;
             }
         } catch (Exception $ex) {
             $this->error = true;
+            echo 'Hiba: ' . $ex->getMessage();
+            var_dump($stmt);
         }
     }
 }
