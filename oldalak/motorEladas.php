@@ -84,14 +84,58 @@
                     <!--AR-->
                     <label for="Ár"><b>Ár:</b></label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Ár forintban" id="ar" name="ar" minlength="1" maxlength="8" autofocus required>
+                        <input type="text" class="form-control" placeholder="Ár forintban" id="ar" name="ar" minlength="1" maxlength="12" autofocus required>
                     </div>
                 </div>
             </div>
-            <!--HIRDETES FELADASA GOMB-->
-            <button type="submit" class="btn btn-warning" name="eladasMegerosites" id="eladasMegerosites" value="true">Hirdetés feladása</button>
+            <div class="from-group mb-4">
+                <div class="col-4">
+                    <!--KEPFELTOLTES-->
+                    <label for="Ár"><b>Kép feltöltése:</b></label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" placeholder="A kép neve egyezzen meg a motor nevével" id="eladasKep" name="eladasKep" autofocus required>
+                    </div>
+                </div>
+                <!--HIRDETES FELADASA GOMB-->
+                <button type="submit" class="btn btn-warning" name="eladasMegerosites" id="eladasMegerosites" value="true">Hirdetés feladása</button>
+            </div>
         </form>
     </div>
 </div>
+
+<!--FELTOLTOTT KEP ATHELYEZESE A 'KEPEK' MAPPABA-->
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eladasMegerosites'])) {
+    // Célkönyvtár, ahova a képet szeretnénk feltölteni
+    $targetDir = "../kepek/";
+    // Az átmozgatandó fájl teljes elérési útja
+    $targetFile = $targetDir . basename($_FILES["eladasKep"]["name"]);  //tipus?
+    // A feltöltés sikerességét ellenőrző változó
+    $uploadOk = 1;
+    // A kép fájltípusának lekérdezése
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    // Ellenőrizd, hogy a fájl valóban kép-e
+    $check = getimagesize($_FILES["eladasKep"]["tmp_name"]);
+    if ($check === false) {
+        echo "A fájl nem kép.";
+        $uploadOk = 0;
+    }
+    // Korlátozd a fájltípusokat, ha szükséges
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        echo "Csak JPG, JPEG, PNG és GIF fájlok engedélyezettek.";
+        $uploadOk = 0;
+    }
+    // Töltsd fel a fájlt, ha minden ellenőrzés sikeres
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($_FILES["eladasKep"]["tmp_name"], $targetFile)) {
+            echo "A fájl sikeresen feltöltve.";
+        } else {
+            echo "Hiba történt a fájl feltöltése közben.";
+        }
+    } else {
+        echo "A fájl feltöltése sikertelen.";
+    }
+}
+?>
 
 <!--<script src="./css_script/motorEladas.js"></script>-->
