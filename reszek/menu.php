@@ -3,7 +3,7 @@
 <navbar id="navigacio">
     <ul class="navlist">
         <li class="nav-item">
-            <a href="index.php" class="active">Főoldal</a>
+            <a href="index.php">Főoldal</a>
         </li>
         <li class="nav-item">
             <a class = "<?php echo ($menu == 'Rolunk' ? 'active' : ''); ?>" href="index.php?menu=Rolunk">Rólunk</a>

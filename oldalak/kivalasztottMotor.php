@@ -19,10 +19,10 @@
                 echo '<div class="col-7">';
                     echo ' <table>
                             <tr>
-                              <th class="tablazat_cimek"><p>Gyártó:</p></th>
-                              <th class="tablazat_cimek"><p>Típus:</p></th>
-                              <th class="tablazat_cimek"><p>Évjárat:</p></th>
-                              <th class="tablazat_cimek"><p>Állapot:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Gyártó:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Típus:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Évjárat:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Állapot:</p></th>
                             </tr>
                             <tr>
                               <td>'.$motorAdatok['gyarto'].'</td>
@@ -31,10 +31,10 @@
                               <td>'.$motorAdatok['allapot'].'</td>
                             </tr>
                             <tr>
-                              <th class="tablazat_cimek"><p>Köbcenti</p><p id="index_szoveg">(cm<sup>3</sup>):</p></th>
-                              <th class="tablazat_cimek"><p>Jogosítvány:</p></th>
-                              <th class="tablazat_cimek"><p>Teljesítmény</p><p id="index_szoveg">(kW):</p></th>
-                              <th class="tablazat_cimek"><p>Nálunk:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Köbcenti</p><p id="index_szoveg" class="adat-parag">(cm<sup>3</sup>):</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Jogosítvány:</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Teljesítmény</p><p id="index_szoveg" class="adat-parag">(kW):</p></th>
+                              <th class="tablazat_cimek"><p class="adat-parag">Nálunk:</p></th>
                             </tr>
                             <tr>
                               <td>'.$motorAdatok['kobcenti'].'</td>
