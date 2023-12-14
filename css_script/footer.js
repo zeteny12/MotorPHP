@@ -11,8 +11,5 @@ window.addEventListener('load', function() {
         }else if (menuParam === 'Felhasznalo') {
             var footer = document.querySelector('.footer');
             footer.style.position = 'absolute';
-        } else if (menuParam === 'MotorEladas') {
-            var footer = document.querySelector('.footer');
-            footer.style.position = 'absolute';
-        } 
+        }
     });
