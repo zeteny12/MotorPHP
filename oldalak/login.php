@@ -7,7 +7,7 @@ if (filter_input(INPUT_POST,
                 FILTER_VALIDATE_BOOLEAN,
                 FILTER_NULL_ON_FAILURE)){
     $email = htmlspecialchars(filter_input(INPUT_POST, 'InputEmail'));
-    $titkos_jelszo = htmlspecialchars(filter_input(INPUT_POST, 'InputPassword'));
+    $password = htmlspecialchars(filter_input(INPUT_POST, 'InputPassword'));
     if ($db->login($email, $password)){
         $_SESSION['login'] = true;
         header("Location: index.php");

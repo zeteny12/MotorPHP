@@ -16,26 +16,29 @@ class Database {
         }
     }
     
-    public function login($email, $pass){
-        $stmt = $this->db->prepare("SELECT * FROM `users` WHERE `e-mail_cim` LIKE ?;");
-        $stmt->bind_param("s", $email);
-        
-        if ($stmt->execute()){
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            if ($pass==$row['password']){
-                $_SESSION['InputEmail'] = $row;
-                $_SESSION['login'] = true;
-                header("Location: index.php");
-            } else {
-                $_SESSION['InputEmail'] = '';
-                $_SESSION['login'] = false;
-                header("Location: index.php?menu=Bejelentkezes");
-            }
-            $result->free_result();
+    public function login($email, $password){
+    $stmt = $this->db->prepare("SELECT `e-mail_cim`, `jelszo` FROM `users` WHERE `e-mail_cim` LIKE ?;");
+    $stmt->bind_param("s", $email);
+
+    if ($stmt->execute()){
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        if ($row && password_verify($password, $row['jelszo'])) {
+            $_SESSION['InputEmail'] = $row['e-mail_cim'];
+            $_SESSION['login'] = true;
+            header("Location: index.php");
+            exit();
+        } else {
+            $_SESSION['InputEmail'] = '';
+            $_SESSION['login'] = false;
+            header("Location: index.php?menu=Bejelentkezes");
+            exit();
         }
-        return false;
+        $result->free_result();
     }
+    return false;
+}
+
     
     public function register($vezeteknev, $keresztnev, $email, $password){
         $stmt = $this->db->prepare("INSERT INTO `users`(`vezeteknev`, `keresztnev`, `e-mail_cim`, `jelszo`, `userid`) VALUES (?,?,?,?,NULL)");
