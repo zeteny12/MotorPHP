@@ -10,7 +10,7 @@
             </ul>
         </div>
         <div class="footer-bottom">
-            <p>Készítette 2023&copy; by <span> Maták Etele Zétény | Ozsvárt Bence</span></p>
+            <p>Készítette 2023-2024&copy; by <span> Maták Etele Zétény | Ozsvárt Bence</span></p>
             <p>MINDEN JOG FENNTARTVA!</p>
         </div>
     </footer>
