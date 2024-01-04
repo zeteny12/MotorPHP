@@ -3,17 +3,13 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('../kepek/fooldal_hatter.jpg');
-        background-attachment: fixed;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
         color: #fff;
     }
     .adat-parag{
         display: inline;
         font-style: italic;
-        text-decoration: underline;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 25px;
     }
     #index_szoveg{
         text-decoration: none;
@@ -31,33 +27,33 @@
     #kivalaszott_motor_kep{
         width: 420px;
         height: 270px;
-        border-radius: 30px;
-        box-shadow: 3px 3px 8px #fff;
+        border: solid 1px #fff;
+        border-radius: 20px;
     }
     .container{
         margin-top: 40px;
+        height: 300px;
     }
-    table {
-        position: relative;
-        z-index: 1;
-        color: #000;
-    }
-    th{
-        font-size: 20px;
-        border: 2px solid #fff;
-        background-color: #a89ca8;
-        padding: 2px 15px;
-    }
+    
     td{
-        text-align: center;
-        border: 2px solid #fff;
-        vertical-align: middle;
-        font-size: 20px;
-        background-color: #d7d2d7;
-        padding: 0 10px;
-    }
+    border-top: solid 1px #d6d6d6;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tablazat_cimek{
+    padding: 0px 10px;
+}
+    
     #vasarlas_div {
-        margin-top: 97px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0px;
         display: flex;
         justify-content: space-between;
     }

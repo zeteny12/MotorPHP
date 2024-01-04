@@ -16,7 +16,7 @@
                     echo '<img id="kivalaszott_motor_kep" src="' . $image . '" alt="' . $motorAdatok['tipus'] . ' képe" title="' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . '">';
                 echo '</div>';
                 echo '<div class="col-1"></div>';
-                echo '<div class="col-7">';
+                echo '<div class="col-7 mt-auto">';
                     echo ' <table>
                             <tr>
                               <th class="tablazat_cimek"><p class="adat-parag">Gyártó:</p></th>
