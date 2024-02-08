@@ -88,4 +88,22 @@ class Database {
             var_dump($stmt);
         }
     }
+    
+    public function osszesfelhasznalo() {
+        $result = $this->db->query("SELECT * FROM `users`");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function getBejelentkezettFelhasznalo($userid){
+        $stmt = $this->db->prepare("SELECT * FROM `users` WHERE `userid` = ?");
+        $stmt->bind_param("i", $userid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0){
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
 }

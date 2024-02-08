@@ -27,6 +27,10 @@ switch ($menu) {
     case 'MotorEladas':
         require_once './oldalak/motoreladas.php';
         break;
+    
+    case 'Vasarlas':
+        require_once './oldalak/vasarlas.php';
+        break;
 
     case 'Főoldal':
         require_once './reszek/header.php';
