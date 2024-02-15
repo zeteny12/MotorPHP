@@ -3,7 +3,6 @@
 <?php 
 if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)){
     $error = false;
-    $errormessage = "";
     $pass1 = filter_input(INPUT_POST, "InputPassword");
     $pass2 = filter_input(INPUT_POST, "InputPassword2");
     $vezeteknev = htmlspecialchars(filter_input(INPUT_POST, "Vezeteknev"));
@@ -11,18 +10,22 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
     $email = filter_input(INPUT_POST, "InputEmail", FILTER_VALIDATE_EMAIL);
     $titkos_jelszo = password_hash($pass1, PASSWORD_DEFAULT);
     
+    if (empty($pass1) || empty($pass2) || empty($vezeteknev) || empty($keresztnev) || empty($email)){
+        $error = true; 
+    }
+    
     if ($pass1 != $pass2){
-        $error = true;
-        $errormessage .= '<p>Nem egyeznek a jelszavak!</p>';
+        echo '<div id="minden-mezo">*A jelszavak nem egyeznek!*</div>';
     }
     if ($error) {
-        echo $errormessage;
+        echo '<div id="minden-mezo">*Minden mezőt töltsön ki!*</div>';
     } else {
         $db->register($vezeteknev, $keresztnev, $email, $titkos_jelszo);
         header("Location:index.php");
     }
 }
 ?>
+
 
 <!--KARTYA-->
     <div class="card">
@@ -47,7 +50,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
                                 </svg>
                             </span>
                         </span>
-                        <input type="text" class="form-control" placeholder="Vezetéknév" id="Vezeteknev" name="Vezeteknev" minlength="3" maxlength="40" autofocus required>
+                        <input type="text" class="form-control" placeholder="Vezetéknév*" id="Vezeteknev" name="Vezeteknev" minlength="3" maxlength="40" autofocus required>
                     </div>
                     <hr>
 
@@ -62,7 +65,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
                                 </svg>
                             </span>
                         </span>
-                        <input type="text" class="form-control" placeholder="Keresztnév" id="Keresztnev" name="Keresztnev" minlength="3" maxlength="40" autofocus required>
+                        <input type="text" class="form-control" placeholder="Keresztnév*" id="Keresztnev" name="Keresztnev" minlength="3" maxlength="40" autofocus required>
                     </div>
                     <hr>
 
@@ -77,7 +80,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
                                 </svg>
                             </span>
                         </span>
-                        <input type="email" class="form-control" placeholder="nev@pelda.com" id="InputEmail" name="InputEmail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}" required title="Érvényes e-mail címet adjon meg" autofocus required>
+                        <input type="email" class="form-control" placeholder="nev@pelda.com*" id="InputEmail" name="InputEmail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}" required title="Érvényes e-mail címet adjon meg" autofocus required>
                     </div>
                     <hr>
 
@@ -92,7 +95,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
                                 </svg>
                             </span>
                         </span>
-                        <input type="password" class="form-control" placeholder="Legalább 8 karakter" id="InputPassword" name="InputPassword" pattern=".{8,}" required title="A jelszónak legalább 8 karakter hosszúnak kell lennie" autofocus required>
+                        <input type="password" class="form-control" placeholder="Legalább 8 karakter*" id="InputPassword" name="InputPassword" pattern=".{8,}" required title="A jelszónak legalább 8 karakter hosszúnak kell lennie" autofocus required>
                     </div>
                     <hr>
 
@@ -107,7 +110,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
                                 </svg>
                             </span>
                         </span>
-                        <input type="password" class="form-control" placeholder="Legalább 8 karakter" id="InputPassword2" name="InputPassword2" pattern=".{8,}" required title="A jelszavaknak egyeznie kell" autofocus required>
+                        <input type="password" class="form-control" placeholder="Legalább 8 karakter*" id="InputPassword2" name="InputPassword2" pattern=".{8,}" required title="A jelszavaknak egyeznie kell" autofocus required>
                     </div>
                 </div>
 
@@ -118,3 +121,5 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
             </form>
         </div>
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

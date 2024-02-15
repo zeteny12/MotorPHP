@@ -12,7 +12,7 @@
             if ($_SESSION['login']) {
                 foreach ($db->osszesfelhasznalo() as $row) {
                     echo '<li class="nav-item">
-                        <a class="'.($menu == 'Felhasznalo' ? 'active' : '').'" href="index.php?menu=Felhasznalo&id='.$row['userid'].'">Felhasználó</a>
+                        <a class="'.($menu == 'Felhasznalo' ? 'active' : '').'" href="index.php?menu=Felhasznalo&id='.$row['userid'].'">'.$row['vezeteknev'].' '.$row['keresztnev'].'</a>
                     </li>';
                 }
                 echo '<li class="nav-item">
