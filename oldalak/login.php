@@ -29,7 +29,7 @@ if (filter_input(INPUT_POST,
                 <div class="from-group mb-4">
 
                     <!--E-MAIL-->
-                    <label for="email"><b>E-mail cím:</b></label>
+                    <label for="InputEmail"><b>E-mail cím:</b></label>
                     <div class="input-group">
                         <span class="input-group-text" id="inline_elem1">
                             <span class="fas fa-envelope">
@@ -45,7 +45,7 @@ if (filter_input(INPUT_POST,
                     <hr>
                     
                     <!--JELSZO-->
-                    <label for="jelszo"><b>Jelszó:</b></label>
+                    <label for="InputPassword"><b>Jelszó:</b></label>
                     <div class="input-group">
                         <span class="input-group-text" id="inline_elem2">
                             <span class="fas fa-envelope">

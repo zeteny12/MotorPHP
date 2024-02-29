@@ -5,9 +5,6 @@ window.addEventListener('load', function() {
         if (menuParam === 'Rolunk') {
             var footer = document.querySelector('.footer');
             footer.style.position = 'absolute';
-        } else if (menuParam === 'Bejelentkezes') {
-            var footer = document.querySelector('.footer');
-            footer.style.position = 'absolute';
         }else if (menuParam === 'Felhasznalo') {
             var footer = document.querySelector('.footer');
             footer.style.position = 'absolute';
