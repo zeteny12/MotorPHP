@@ -1,3 +1,4 @@
+/*Payment Card*/
 .card{
     width: auto;
     height: auto;
@@ -47,3 +48,67 @@
 .FizetesiModSzoveg{
     margin-bottom: 0px;
 }
+
+#PaymentMethodText{
+    color: red;
+    font-size: 20px;
+}
+
+
+/*Selected Motor*/
+#kivalaszott_motor_cim {
+        font-family: 'Lilita One', sans-serif;
+        text-transform: uppercase;
+        font-style: italic;
+        font-weight: bold;
+        color: #fff;
+        text-align: center;
+        font-size: 60px;
+        margin-top: 50px;
+    }
+    
+    #jobb_oldali_motor_kep {
+    display: block;
+    margin: 0 auto;
+}
+
+.kozepre_igazitott_kep_tablazat {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#kivalaszott_motor_kep {
+    width: 420px;
+    height: 270px;
+    border: solid 1px #fff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+td{
+    border-top: solid 1px #d6d6d6;
+    padding-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+table{
+    margin: 0 auto;
+    color: #fff;
+    width: 100%;
+}
+
+.tablazat_cimek{
+    padding: 0px 10px;
+}
+
+#vasarlas_div_ar {
+        margin-left: auto;
+        margin-right: auto;
+        font-family: 'Lilita One', sans-serif;
+        font-style: italic;
+        font-weight: bold;
+        color: #fff;
+        font-size: 60px;
+    }

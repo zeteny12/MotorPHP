@@ -47,7 +47,7 @@
                     echo '<div id="vasarlas_div" class="d-flex justify-content-between align-items-center">';
                                 echo '<div>';
                                 if (isset($_SESSION['login']) && $_SESSION['login']) {
-                                    echo '<a href="index.php?menu=Vasarlas" class="btn btn-success">Vásárlás</a>';
+                                    echo '<a href="index.php?menu=Vasarlas&id='.$motorAdatok['motorid'].'" class="btn btn-success">Vásárlás</a>';
                                 } else {
                                     echo '<a href="index.php?menu=Bejelentkezes" class="btn btn-success">Bejelentkezés</a>';
                                 }

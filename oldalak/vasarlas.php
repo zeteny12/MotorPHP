@@ -25,7 +25,7 @@
                                         <img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Mail-3-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="number" class="form-control" placeholder="Pl.: 4225" id="InputPostalCode" name="InputPostalCode" autofocus required>
+                                <input type="number" class="form-control" placeholder="Pl.: 4225*" id="InputPostalCode" name="InputPostalCode" autofocus required>
                             </div>
                             <hr>
                             <!--City-->
@@ -36,7 +36,7 @@
                                         <img src="https://icons.iconarchive.com/icons/iconoir-team/iconoir/128/city-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Pl.: Debrecen" id="inputCity" name="inputCity" autofocus required>
+                                <input type="text" class="form-control" placeholder="Pl.: Debrecen*" id="inputCity" name="inputCity" autofocus required>
                             </div>
                             <hr>
                             <!--Street Name-Number-->
@@ -47,7 +47,7 @@
                                         <img src="https://icons.iconarchive.com/icons/bootstrap/bootstrap/16/Bootstrap-geo-alt-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Pl.: Ispotály utca 22" id="inputStreetNameNumber" name="inputStreetNameNumber" autofocus required>
+                                <input type="text" class="form-control" placeholder="Pl.: Ispotály utca 22*" id="inputStreetNameNumber" name="inputStreetNameNumber" autofocus required>
                             </div>
                             <hr>
                             <!--Floor-Door-->
@@ -61,26 +61,21 @@
                                 <input type="text" class="form-control" placeholder="Pl.: 2/7" id="inputFloorDoor" name="inputFloorDoor">
                             </div>
                             <hr>
+                            <!--Phone Number-->
+                            <label for="inputPhoneNumber"><b>Telefonszám:</b></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <span class="fas fa-envelope">
+                                        <img src="https://icons.iconarchive.com/icons/iconsmind/outline/16/Telephone-icon.png" width="16" height="16">
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Pl.: +36 30 123 4567*" id="inputPhoneNumber" name="inputPhoneNumber" autofocus required>
+                            </div>
+                            <hr>
                             <!--Payment Method-->
                             <label><b>Fizetési mód:</b></label>
                             <br>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6" id="FizetesBankkartya">
-                                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-3/32/payment-creditcard-visa-icon.png" width="32" height="32">
-                                        <p class="FizetesiModSzoveg">Bankkártya</p>
-                                        <input type="checkbox" id="Bankkártya" name="Bankkártya" value="Bankkártya">
-                                    </div>
-                                    
-                                    <div class="col-6" id="FizetesKeszpenz">
-                                        <img src="https://icons.iconarchive.com/icons/webiconset/payment/32/Cash-icon.png" width="32" height="32">
-                                        <p class="FizetesiModSzoveg">Készpénz</p>
-                                        <input type="checkbox" id="Készpénz" name="Készpénz" value="Készpénz">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
+                            <p id="PaymentMethodText">*Kizárólag bankkártyás fizetés*</p>
                         </div>
                         <br>
                         <!--Purchase Button-->
@@ -94,12 +89,58 @@
         
         <!--Second Col-->
         <div class="col-1">
-            
+            <!--For Place-->
         </div>
         
         <!--Third Col-->
         <div class="col-6">
-            
+            <?php 
+                $id= filter_input(INPUT_GET, "id");
+
+                $motorAdatok = $db->getKivalasztottMotor($id);
+
+                if ($motorAdatok!=null) {
+                    echo '<h1 id="kivalaszott_motor_cim">'.$motorAdatok['gyarto'].' '.$motorAdatok['tipus'].' ('.$motorAdatok['evjarat'].')</h1>';
+
+                    echo '<div class="container" id="jobb_oldali_motor_kep_es_tablazat">';
+                        echo '<div class="col-6 kozepre_igazitott_kep_tablazat">';
+                            $image = file_exists("./kepek/" . $motorAdatok['tipus'] . ".jpg") ? "./kepek/" . $motorAdatok['tipus'] . ".jpg" : "./kepek/noimage.jpg";
+                            echo '<img id="kivalaszott_motor_kep" src="' . $image . '" alt="' . $motorAdatok['tipus'] . ' képe" title="' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . '">';
+                            echo '<br>';
+                        echo '</div>';
+                        echo '<div class="col-6 kozepre_igazitott_kep_tablazat" id="jobb_oldali_tablazat">';
+                            echo ' <table>
+                                        <tr>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Gyártó:</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Típus:</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Évjárat:</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Állapot:</p></th>
+                                        </tr>
+                                        <tr>
+                                          <td>'.$motorAdatok['gyarto'].'</td>
+                                          <td>'.$motorAdatok['tipus'].'</td>
+                                          <td>'.$motorAdatok['evjarat'].'</td>
+                                          <td>'.$motorAdatok['allapot'].'</td>
+                                        </tr>
+                                        <tr>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Köbcenti</p><p id="index_szoveg" class="adat-parag">(cm<sup>3</sup>):</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Jogosítvány:</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Teljesítmény</p><p id="index_szoveg" class="adat-parag">(kW):</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Nálunk:</p></th>
+                                        </tr>
+                                        <tr>
+                                          <td>'.$motorAdatok['kobcenti'].'</td>
+                                          <td>'.$motorAdatok['jogositvany'].'</td>
+                                          <td>'.$motorAdatok['kW'].'</td>
+                                          <td>'.$motorAdatok['nalunk'].'</td>
+                                        </tr>
+                                    </table> ';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div id="vasarlas_div_ar" class="tablazat_ar">'.$motorAdatok['ar'].' Ft</div>';
+                    echo '</div>';
+                }
+            ?>
         </div>
     </div>
 </div>
