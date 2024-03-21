@@ -9,5 +9,5 @@ window.addEventListener('load', function() {
         footer.style.position = 'absolute';
     } else if (menuParam === 'Bejelentkezes') {
         footer.style.position = 'absolute';
-    }
+    } 
 });

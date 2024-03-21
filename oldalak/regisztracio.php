@@ -15,6 +15,7 @@ if (filter_input(INPUT_POST, "regisztraciosAdatok", FILTER_VALIDATE_BOOLEAN, FIL
     }
     
     if ($pass1 != $pass2){
+        $error = true;
         echo '<div id="minden-mezo">*A jelszavak nem egyeznek!*</div>';
     }
     if ($error) {
