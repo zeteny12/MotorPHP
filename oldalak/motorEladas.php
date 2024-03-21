@@ -1,10 +1,22 @@
-<link rel="stylesheet" href="./css_script/motorEladas.css"/>
+<link rel="stylesheet" href="./css_script/motoreladas.css"/>
 
 
 <?php
     if (filter_input(INPUT_POST, "eladasMegerosites", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)){
-        $error = false;
-        $errormessage = "";
+    $error = false;
+    $errormessage = "";
+
+    $required_fields = array("gyarto", "tipus", "evjarat", "allapot", "kobcenti", "jogositvany", "kW", "ar");
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $error = true;
+            $errormessage = "<div style='color: red; font-weight: bold; font-size: 28px;'>*Minden mező kitöltése kötelező!*</div>";
+        }
+    }
+
+    if ($error) {
+        echo $errormessage;
+    } else {
         $gyarto = filter_input(INPUT_POST, "gyarto");
         $tipus = filter_input(INPUT_POST, "tipus");
         $evjarat = filter_input(INPUT_POST, "evjarat");
@@ -16,92 +28,127 @@
         
         $db->hirdetesKeszitese($gyarto, $tipus, $evjarat, $allapot, $kobcenti, $jogositvany, $ar, $kW);
         header("Location:index.php");
+        }
     }
 ?>
 
 
-<h1>Hirdetés készítése</h1>
 <div class="container">
-    <div class="row">
-        <form action="#" method="post" novalidate onsubmit="return teljesKitoltes()">
-            <div class="from-group mb-4 row">
-                <div class="col-6">
-                    <!--GYARTO-->
-                    <label for="Gyártó"><b>Gyártó:</b></label>
+<div class="card position-relative">
+        
+        <!--KARTYA_CIM-->
+        <div class="card-header text-center text-md-center">
+            <h1 class="mb-0 fs-5">Hirdetés készítése</h1>
+        </div>
+        
+        <!--KARTYA_TESTE-->
+        <div class="card-body py-3">
+            <form action="#" method="post" novalidate>
+                <div class="from-group mb-4">
+
+                    <!--Gyártó-->
+                    <label for="gyarto"><b>Gyártó:</b></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Gyártó" id="gyarto" name="gyarto" minlength="3" maxlength="40" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/iconsmind/outline/16/Motorcycle-icon.png" width="16" height="16">
+                        </span>
+                        <input type="text" class="form-control" placeholder="Gyártó" id="gyarto" name="gyarto" minlength="3" maxlength="40" autofocus>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!--TIPUS-->
-                    <label for="Típus"><b>Típus:</b></label>
+
+
+                    <hr>
+                    
+                    <!--Típus-->
+                    <label for="tipus"><b>Típus:</b></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Típus" id="tipus" name="tipus" minlength="3" maxlength="40" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/iconsmind/outline/16/Motorcycle-icon.png" width="16" height="16">
+                        </span>
+                        <input type="text" class="form-control" placeholder="Típus" id="tipus" name="tipus" minlength="3" maxlength="40" autofocus>
                     </div>
-                </div>
-            </div>
-            <div class="from-group mb-4 row">
-                <div class="col-6">
-                    <!--EVJARAT-->
-                    <label for="Évjárat"><b>Évjárat:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Évjárat-->
+                    <label for="evjarat"><b>Évjárat:</b></label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Évjárat" id="evjarat" name="evjarat" maxlength="4" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-business-2/16/calendar-icon.png" width="16" height="16">
+                        </span>
+                        <input type="number" class="form-control" placeholder="Évjárat" id="evjarat" name="evjarat" maxlength="4" autofocus>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!--ALLAPOT-->
-                    <label for="Állapot"><b>Állapot:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Állapot-->
+                    <label for="allapot"><b>Állapot:</b></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Állapot" id="allapot" name="allapot" minlength="2" maxlength="40" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/iconsmind/outline/16/Motorcycle-icon.png" width="16" height="16">
+                        </span>
+                        <input type="text" class="form-control" placeholder="Állapot" id="allapot" name="allapot" minlength="2" maxlength="40" autofocus>
                     </div>
-                </div>
-            </div>
-            <div class="from-group mb-4 row">
-                <div class="col-6">
-                    <!--KOBCENTI-->
-                    <label for="Köbcenti"><b>Köbcenti:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Köbcenti-->
+                    <label for="kobcenti"><b>Köbcenti:</b></label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Köbcenti" id="kobcenti" name="kobcenti" minlength="1" maxlength="5" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/pictogrammers/material/16/engine-icon.png" width="16" height="16">
+                        </span>
+                        <input type="number" class="form-control" placeholder="Köbcenti" id="kobcenti" name="kobcenti" minlength="1" maxlength="5" autofocus>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!--JOGOSITVANY-->
-                    <label for="Jogosítvány"><b>Jogosítvány:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Jogosítvány-->
+                    <label for="jogositvany"><b>Jogosítvány:</b></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Használathoz szükséges jogosítvány (B, A1, A2, A)" id="jogositvany" name="jogositvany" minlength="1" maxlength="15" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/pictogrammers/material/16/card-account-details-outline-icon.png" width="16" height="16">
+                        </span>
+                        <input type="text" class="form-control" placeholder="B, A1, A2, A" id="jogositvany" name="jogositvany" minlength="1" maxlength="15" autofocus>
                     </div>
-                </div>
-            </div>
-            <div class="from-group mb-4 row">
-                <div class="col-6">
-                    <!--TELJESITMENY-->
-                    <label for="Teljesítmény"><b>Teljesítmény:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Teljesítmény-->
+                    <label for="kW"><b>Teljesítmény:</b></label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="Teljesítmény (kW)" id="kW" name="kW" minlength="1" maxlength="4" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/pictogrammers/material/16/engine-icon.png" width="16" height="16">
+                        </span>
+                        <input type="number" class="form-control" placeholder="Teljesítmény (kW)" id="kW" name="kW" minlength="1" maxlength="4" autofocus>
                     </div>
-                </div>
-                <div class="col-6">
-                    <!--AR-->
-                    <label for="Ár"><b>Ár:</b></label>
+                    
+                    <hr>
+                        
+                    <!--Ár-->
+                    <label for="ar"><b>Ár:</b></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Ár forintban" id="ar" name="ar" minlength="1" maxlength="12" autofocus required>
+                        <span class="input-group-text">
+                            <img src="https://icons.iconarchive.com/icons/icons8/ios7/16/Finance-Money-Box-icon.png" width="16" height="16">
+                        </span>
+                        <input type="text" class="form-control" placeholder="Ár forintban" id="ar" name="ar" minlength="1" maxlength="12" autofocus>
                     </div>
+                    
+                    <hr>
+                    
+                    <!--Kép feltöltése-->
+                    <label for="eladasKep"><b>Kép feltöltése:</b></label>
+                    <input type="file" class="form-control" id="eladasKep" name="eladasKep" autofocus>
                 </div>
-            </div>
-            <div class="from-group mb-4">
-                <div class="col-4">
-                    <!--KEPFELTOLTES-->
-                    <label for="Ár"><b>Kép feltöltése:</b></label>
-                    <div class="input-group">
-                        <input type="file" class="form-control" placeholder="A kép neve egyezzen meg a motor nevével" id="eladasKep" name="eladasKep" autofocus required>
-                    </div>
+                <br>
+                    
+                <!--Hirdetés feladása-->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-warning" name="eladasMegerosites" id="eladasMegerosites" value="true">Hirdetés feladása</button>
                 </div>
-                <!--HIRDETES FELADASA GOMB-->
-                <button type="submit" class="btn btn-warning" name="eladasMegerosites" id="eladasMegerosites" value="true">Hirdetés feladása</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+    </div>
 
 <!--FELTOLTOTT KEP ATHELYEZESE A 'KEPEK' MAPPABA-->
 <?php
@@ -137,5 +184,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eladasMegerosites']))
     }
 }
 ?>
-
-<!--<script src="./css_script/motorEladas.js"></script>-->

@@ -123,9 +123,9 @@
                                           <td>'.$motorAdatok['allapot'].'</td>
                                         </tr>
                                         <tr>
-                                          <th class="tablazat_cimek"><p class="adat-parag">Köbcenti</p><p id="index_szoveg" class="adat-parag">(cm<sup>3</sup>):</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Köbcenti</p><p class="adat-parag index_szoveg">(cm<sup>3</sup>):</p></th>
                                           <th class="tablazat_cimek"><p class="adat-parag">Jogosítvány:</p></th>
-                                          <th class="tablazat_cimek"><p class="adat-parag">Teljesítmény</p><p id="index_szoveg" class="adat-parag">(kW):</p></th>
+                                          <th class="tablazat_cimek"><p class="adat-parag">Teljesítmény</p><p class="adat-parag index_szoveg">(kW):</p></th>
                                           <th class="tablazat_cimek"><p class="adat-parag">Nálunk:</p></th>
                                         </tr>
                                         <tr>

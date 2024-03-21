@@ -28,16 +28,6 @@
     border: 1px solid rgba(255, 255, 255, 0.40);
 }
 
-/*NAVIGALAS_REGISZTRACIOHOZ*/
-#Regisztráció{
-    margin-left: 20px;
-}
-
-#regisztracios_link{
-    margin-left: 15px;
-    color: #fff;
-}
-
 /*BEJELENTKEZES_GOMB*/
 .btn{
     justify-content: center;
