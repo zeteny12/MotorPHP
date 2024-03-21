@@ -10,7 +10,7 @@
     foreach ($required_fields as $field) {
         if (empty($_POST[$field])) {
             $error = true;
-            $errormessage = "<div style='color: red; font-weight: bold; font-size: 28px;'>*Minden mező kitöltése kötelező!*</div>";
+            $errormessage = '<div id="errormessage">*Minden mező kitöltése kötelező!*</div>';
         }
     }
 
