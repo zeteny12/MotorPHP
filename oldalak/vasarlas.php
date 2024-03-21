@@ -1,5 +1,26 @@
 <link rel="stylesheet" href="./css_script/vasarlas.css"/>
 
+<?php
+    if (filter_input(INPUT_POST, "VasarlasVeglegesitese", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)) {
+    $error = false;
+    $irszam = filter_input(INPUT_POST, "InputPostalCode");
+    $varos = htmlspecialchars(filter_input(INPUT_POST, "inputCity"));
+    $unev_hszam = filter_input(INPUT_POST, "inputStreetNameNumber");
+    $emelet_ajto = filter_input(INPUT_POST, "inputFloorDoor");
+    $telefonszam = filter_input(INPUT_POST, "inputPhoneNumber");
+    
+    if (empty($irszam) || empty($varos) || empty($unev_hszam) || empty($telefonszam)) {
+        $error = true;
+    }
+    if ($error) {
+        echo '<div id="minden-mezo">*A csillaggal (*) jelölt mezőket töltse ki!*</div>';
+    } else {
+        $db->vasarlasLeadasa($irszam, $varos, $unev_hszam, $emelet_ajto, $telefonszam);
+        header("Location:index.php");
+    }
+}
+?>
+
 <div class="container" id="vasarlas-cont">
     <div class="row">
         <!--First Col-->
@@ -80,7 +101,7 @@
                         <br>
                         <!--Purchase Button-->
                         <div class="d-grid">
-                            <button type="submit" name="VásárlásVéglegesítése" class="btn btn-primary" value="true">Vásárlás Megerősítése</button>
+                            <button type="submit" name="VasarlasVeglegesitese" id="VasarlasVeglegesitese" class="btn btn-primary" value="true">Vásárlás Megerősítése</button>
                         </div>
                     </form>
                 </div>
