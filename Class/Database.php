@@ -107,9 +107,9 @@ class Database {
         }
     }
     
-    public function vasarlasLeadasa($irszam, $varos, $unev_haszam, $emelet_ajto, $telefonszam){
+    public function vasarlasLeadasa($irszam, $varos, $unev_hszam, $emelet_ajto, $telefonszam){
         $stmt = $this->db->prepare("INSERT INTO `vasarlas` (`irszam`, `varos`, `unev_hszam`, `emelet_ajto`, `telefonszam`, `userid`, `motorid`, `vasarlas_idopontja`) VALUES (?,?,?,?,?,1,1,CURRENT_TIMESTAMP)");
-        $stmt->bind_param("issss", $irszam, $varos, $unev_haszam, $emelet_ajto, $telefonszam);
+        $stmt->bind_param("issss", $irszam, $varos, $unev_hszam, $emelet_ajto, $telefonszam);
         try{
             if ($stmt->execute()){
                 echo '<p>Vásárlás sikeresen leadva!</p>';

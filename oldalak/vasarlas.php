@@ -8,7 +8,7 @@
     $unev_hszam = filter_input(INPUT_POST, "inputStreetNameNumber");
     $emelet_ajto = filter_input(INPUT_POST, "inputFloorDoor");
     $telefonszam = filter_input(INPUT_POST, "inputPhoneNumber");
-    
+
     if (empty($irszam) || empty($varos) || empty($unev_hszam) || empty($telefonszam)) {
         $error = true;
     }
@@ -57,7 +57,7 @@
                                         <img src="https://icons.iconarchive.com/icons/iconoir-team/iconoir/128/city-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Pl.: Debrecen*" id="inputCity" name="inputCity" autofocus required>
+                                <input type="text" class="form-control" placeholder="Pl.: Debrecen*" id="inputCity" name="inputCity" autofocus>
                             </div>
                             <hr>
                             <!--Street Name-Number-->
@@ -68,7 +68,7 @@
                                         <img src="https://icons.iconarchive.com/icons/bootstrap/bootstrap/16/Bootstrap-geo-alt-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Pl.: Ispotály utca 22*" id="inputStreetNameNumber" name="inputStreetNameNumber" autofocus required>
+                                <input type="text" class="form-control" placeholder="Pl.: Ispotály utca 22*" id="inputStreetNameNumber" name="inputStreetNameNumber" autofocus>
                             </div>
                             <hr>
                             <!--Floor-Door-->
@@ -90,7 +90,7 @@
                                         <img src="https://icons.iconarchive.com/icons/iconsmind/outline/16/Telephone-icon.png" width="16" height="16">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Pl.: +36 30 123 4567*" id="inputPhoneNumber" name="inputPhoneNumber" autofocus required>
+                                <input type="text" class="form-control" placeholder="Pl.: +36 30 123 4567*" id="inputPhoneNumber" name="inputPhoneNumber" autofocus>
                             </div>
                             <hr>
                             <!--Payment Method-->
