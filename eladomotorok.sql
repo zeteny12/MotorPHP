@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 04. 20:37
+-- Létrehozás ideje: 2024. Ápr 21. 13:38
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -31,13 +31,13 @@ CREATE TABLE `motor` (
   `gyarto` varchar(8) NOT NULL,
   `tipus` varchar(12) NOT NULL,
   `evjarat` int(4) NOT NULL,
-  `allapot` varchar(2) NOT NULL,
+  `allapot` varchar(10) NOT NULL,
   `kobcenti` int(4) NOT NULL,
   `jogositvany` varchar(9) NOT NULL,
   `ar` varchar(10) NOT NULL,
   `kW` varchar(5) NOT NULL,
   `nalunk` date NOT NULL DEFAULT current_timestamp(),
-  `motorid` int(11) UNSIGNED NOT NULL
+  `motorid` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `users` (
   `keresztnev` varchar(50) NOT NULL,
   `e-mail_cim` varchar(50) NOT NULL,
   `jelszo` varchar(255) NOT NULL,
-  `userid` int(11) UNSIGNED NOT NULL
+  `userid` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -75,7 +75,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`vezeteknev`, `keresztnev`, `e-mail_cim`, `jelszo`, `userid`) VALUES
-('Maták', 'Zétény', 'zeteny.matak01@pelda.hu', '$2y$10$r9A6Kpc2DpCaRKVyMJDsVeY22CG/.hFVC4SFrJXrZ/fvEEnYX6PwK', 1);
+('Teszt', 'Elek', 'asd@gmail.com', '$2y$10$H0MNDg9E10YR5nUM1bJ5XeHi/a2HNukG2Zry7b.ORidjPeoajgHJa', 7),
+('Maták', 'Zétény', 'zeteny.matak01@pelda.hu', '$2y$10$XUQSVll8OINPnPxN4FFIzuSVEyefv3vGO2iawmNultag/gdSPcSuS', 8);
 
 -- --------------------------------------------------------
 
@@ -84,10 +85,22 @@ INSERT INTO `users` (`vezeteknev`, `keresztnev`, `e-mail_cim`, `jelszo`, `userid
 --
 
 CREATE TABLE `vasarlas` (
-  `vasarlas_idopontja` date NOT NULL DEFAULT current_timestamp(),
+  `irszam` int(4) NOT NULL,
+  `varos` varchar(30) NOT NULL,
+  `unev_hszam` varchar(200) NOT NULL,
+  `emelet_ajto` varchar(20) DEFAULT NULL,
+  `telefonszam` varchar(20) NOT NULL,
   `userid` int(10) UNSIGNED NOT NULL,
-  `motorid` int(10) UNSIGNED NOT NULL
+  `motorid` int(10) UNSIGNED NOT NULL,
+  `vasarlas_idopontja` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- A tábla adatainak kiíratása `vasarlas`
+--
+
+INSERT INTO `vasarlas` (`irszam`, `varos`, `unev_hszam`, `emelet_ajto`, `telefonszam`, `userid`, `motorid`, `vasarlas_idopontja`) VALUES
+(4032, 'Debrecen', 'Nagy András u. 29.', '2/57', '+20 2323 23423', 7, 10, '2024-04-16 10:47:28');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -109,8 +122,8 @@ ALTER TABLE `users`
 -- A tábla indexei `vasarlas`
 --
 ALTER TABLE `vasarlas`
-  ADD UNIQUE KEY `userid` (`userid`),
-  ADD UNIQUE KEY `motorid` (`motorid`);
+  ADD KEY `fk_termek_vasarlas` (`motorid`),
+  ADD KEY `fk_termek_user` (`userid`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
@@ -120,13 +133,13 @@ ALTER TABLE `vasarlas`
 -- AUTO_INCREMENT a táblához `motor`
 --
 ALTER TABLE `motor`
-  MODIFY `motorid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `motorid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -136,8 +149,8 @@ ALTER TABLE `users`
 -- Megkötések a táblához `vasarlas`
 --
 ALTER TABLE `vasarlas`
-  ADD CONSTRAINT `vasarlas_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vasarlas_ibfk_2` FOREIGN KEY (`motorid`) REFERENCES `motor` (`motorid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_termek_user` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_termek_vasarlas` FOREIGN KEY (`motorid`) REFERENCES `motor` (`motorid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -28,6 +28,22 @@ switch ($menu) {
         require_once './oldalak/motoreladas.php';
         break;
     
+     case 'FiokTorlese':
+        require_once './oldalak/felhasznalotorles.php';
+        break;
+    
+    case 'FiokModositas':
+        require_once './oldalak/felhasznalomodositas.php';
+        break;
+
+    case 'EmailKerelem':
+        require_once './oldalak/emailkerelem.php';
+        break;
+    
+    case 'ElfelejtettJelszo':
+        require_once './oldalak/elfelejtettjelszo.php';
+        break;  
+
     case 'Vasarlas':
         require_once './oldalak/vasarlas.php';
         break;

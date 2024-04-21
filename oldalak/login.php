@@ -31,7 +31,7 @@ if (filter_input(INPUT_POST,
                     <!--E-MAIL-->
                     <label for="InputEmail"><b>E-mail cím:</b></label>
                     <div class="input-group">
-                        <span class="input-group-text">
+                        <span class="input-group-text" id="inline_elem1">
                             <span class="fas fa-envelope">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
                                     <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
@@ -47,7 +47,7 @@ if (filter_input(INPUT_POST,
                     <!--JELSZO-->
                     <label for="InputPassword"><b>Jelszó:</b></label>
                     <div class="input-group">
-                        <span class="input-group-text">
+                        <span class="input-group-text" id="inline_elem2">
                             <span class="fas fa-envelope">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
                                     <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
@@ -59,7 +59,13 @@ if (filter_input(INPUT_POST,
                     </div>
                     <hr>
                 </div>
+                
+                <div class="elfelejtettJelszo">
+                    <p><a href="index.php?menu=EmailKerelem">Elfelejtette jelszavát?</a></p>
+                </div>
+                
                 <br>
+                
                 <!--BEJELENTKEZES_GOMB-->
                 <div class="d-grid">
                     <button type="submit" name="belepesiAdatok" class="btn btn-primary" value="true">Bejelentkezés</button>

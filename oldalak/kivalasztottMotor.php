@@ -42,7 +42,7 @@
                               <td>'.$motorAdatok['kW'].'</td>
                               <td>'.$motorAdatok['nalunk'].'</td>
                             </tr>
-                          </table> ';
+                          </table>';
                     
                     echo '<div id="vasarlas_div" class="d-flex justify-content-between align-items-center">';
                                 echo '<div>';

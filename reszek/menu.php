@@ -10,15 +10,16 @@
         </li>
         <?php
             if ($_SESSION['login']) {
-                foreach ($db->osszesfelhasznalo() as $row) {
-                    echo '<li class="nav-item">
-                        <a class="'.($menu == 'Felhasznalo' ? 'active' : '').'" href="index.php?menu=Felhasznalo&id='.$row['userid'].'">'.$row['vezeteknev'].' '.$row['keresztnev'].'</a>
-                    </li>';
-                }
+                echo '<li class="nav-item">
+                    <a class="'.($menu == 'Felhasznalo' ? 'active' : '').'" href="index.php?menu=Felhasznalo&id='.$_currentUser['userid'].'">'.$_currentUser['vezeteknev'].' '.$_currentUser['keresztnev'].'</a>
+                </li>';
+
+                // Kilépés gomb
                 echo '<li class="nav-item">
                     <a class="'.($menu == 'Kilepes' ? 'active' : '').'" href="index.php?menu=Kilepes">Kilépés</a>
                 </li>';
             } else {
+                // Bejelentkezés és regisztráció gombok
                 echo '<li class="nav-item">
                         <a class="'.($menu == 'Bejelentkezes' ? 'active' : '').'" href="index.php?menu=Bejelentkezes">Bejelentkezés</a>
                       </li>
@@ -27,6 +28,7 @@
                       </li>';
             }
 ?>
+
 
     </ul>
 </navbar>

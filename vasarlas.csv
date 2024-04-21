@@ -1,1 +1,73 @@
-motorid;userid;vasarlas_idopontja
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Ápr 17. 07:37
+-- Kiszolgáló verziója: 10.4.27-MariaDB
+-- PHP verzió: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Adatbázis: `eladomotorok`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `vasarlas`
+--
+
+CREATE TABLE `vasarlas` (
+  `irszam` int(4) NOT NULL,
+  `varos` varchar(30) NOT NULL,
+  `unev_hszam` varchar(200) NOT NULL,
+  `emelet_ajto` varchar(20) DEFAULT NULL,
+  `telefonszam` varchar(20) NOT NULL,
+  `userid` int(10) UNSIGNED NOT NULL,
+  `motorid` int(10) UNSIGNED NOT NULL,
+  `vasarlas_idopontja` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- A tábla adatainak kiíratása `vasarlas`
+--
+
+INSERT INTO `vasarlas` (`irszam`, `varos`, `unev_hszam`, `emelet_ajto`, `telefonszam`, `userid`, `motorid`, `vasarlas_idopontja`) VALUES
+(4032, 'Debrecen', 'Nagy András u. 29.', '2/57', '+20 2323 23423', 7, 10, '2024-04-16 10:47:28');
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `vasarlas`
+--
+ALTER TABLE `vasarlas`
+  ADD KEY `fk_termek_vasarlas` (`motorid`),
+  ADD KEY `fk_termek_user` (`userid`);
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `vasarlas`
+--
+ALTER TABLE `vasarlas`
+  ADD CONSTRAINT `fk_termek_user` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_termek_vasarlas` FOREIGN KEY (`motorid`) REFERENCES `motor` (`motorid`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

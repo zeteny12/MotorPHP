@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="./css_script/vasarlas.css"/>
 
 <?php
-    if (filter_input(INPUT_POST, "VasarlasVeglegesitese", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)) {
+if (filter_input(INPUT_POST, "VasarlasVeglegesitese", FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)) {
+    $motorid = filter_input(INPUT_POST, "motorid", FILTER_SANITIZE_NUMBER_INT);
     $error = false;
     $irszam = filter_input(INPUT_POST, "InputPostalCode");
     $varos = htmlspecialchars(filter_input(INPUT_POST, "inputCity"));
@@ -15,7 +16,7 @@
     if ($error) {
         echo '<div id="minden-mezo">*A csillaggal (*) jelölt mezőket töltse ki!*</div>';
     } else {
-        $db->vasarlasLeadasa($irszam, $varos, $unev_hszam, $emelet_ajto, $telefonszam);
+        $db->vasarlasLeadasa($irszam, $varos, $unev_hszam, $emelet_ajto, $telefonszam, $_SESSION["userid"], $motorid);
         header("Location:index.php");
     }
 }
@@ -27,7 +28,7 @@
         <div class="col-5">
             <!--Content Card-->
             <div class="card position-relative">
-        
+
                 <!--Card Header-->
                 <div class="card-header text-center text-md-center">
                     <h1 class="mb-0 fs-5">Szállítási Adatok</h1>
@@ -102,35 +103,36 @@
                         <!--Purchase Button-->
                         <div class="d-grid">
                             <button type="submit" name="VasarlasVeglegesitese" id="VasarlasVeglegesitese" class="btn btn-primary" value="true">Vásárlás Megerősítése</button>
+                            <input type="hidden" name="motorid" value="<?php echo filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT); ?>" style="display: none;"/>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
+
         <!--Second Col-->
         <div class="col-1">
             <!--For Place-->
         </div>
-        
+
         <!--Third Col-->
         <div class="col-6">
-            <?php 
-                $id= filter_input(INPUT_GET, "id");
+            <?php
+            $id = filter_input(INPUT_GET, "id");
 
-                $motorAdatok = $db->getKivalasztottMotor($id);
+            $motorAdatok = $db->getKivalasztottMotor($id);
 
-                if ($motorAdatok!=null) {
-                    echo '<h1 id="kivalaszott_motor_cim">'.$motorAdatok['gyarto'].' '.$motorAdatok['tipus'].' ('.$motorAdatok['evjarat'].')</h1>';
+            if ($motorAdatok != null) {
+                echo '<h1 id="kivalaszott_motor_cim">' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . ' (' . $motorAdatok['evjarat'] . ')</h1>';
 
-                    echo '<div class="container" id="jobb_oldali_motor_kep_es_tablazat">';
-                        echo '<div class="col-6 kozepre_igazitott_kep_tablazat">';
-                            $image = file_exists("./kepek/" . $motorAdatok['tipus'] . ".jpg") ? "./kepek/" . $motorAdatok['tipus'] . ".jpg" : "./kepek/noimage.jpg";
-                            echo '<img id="kivalaszott_motor_kep" src="' . $image . '" alt="' . $motorAdatok['tipus'] . ' képe" title="' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . '">';
-                            echo '<br>';
-                        echo '</div>';
-                        echo '<div class="col-6 kozepre_igazitott_kep_tablazat" id="jobb_oldali_tablazat">';
-                            echo ' <table>
+                echo '<div class="container" id="jobb_oldali_motor_kep_es_tablazat">';
+                echo '<div class="col-6 kozepre_igazitott_kep_tablazat">';
+                $image = file_exists("./kepek/" . $motorAdatok['tipus'] . ".jpg") ? "./kepek/" . $motorAdatok['tipus'] . ".jpg" : "./kepek/noimage.jpg";
+                echo '<img id="kivalaszott_motor_kep" src="' . $image . '" alt="' . $motorAdatok['tipus'] . ' képe" title="' . $motorAdatok['gyarto'] . ' ' . $motorAdatok['tipus'] . '">';
+                echo '<br>';
+                echo '</div>';
+                echo '<div class="col-6 kozepre_igazitott_kep_tablazat" id="jobb_oldali_tablazat">';
+                echo ' <table>
                                         <tr>
                                           <th class="tablazat_cimek"><p class="adat-parag">Gyártó:</p></th>
                                           <th class="tablazat_cimek"><p class="adat-parag">Típus:</p></th>
@@ -138,10 +140,10 @@
                                           <th class="tablazat_cimek"><p class="adat-parag">Állapot:</p></th>
                                         </tr>
                                         <tr>
-                                          <td>'.$motorAdatok['gyarto'].'</td>
-                                          <td>'.$motorAdatok['tipus'].'</td>
-                                          <td>'.$motorAdatok['evjarat'].'</td>
-                                          <td>'.$motorAdatok['allapot'].'</td>
+                                          <td>' . $motorAdatok['gyarto'] . '</td>
+                                          <td>' . $motorAdatok['tipus'] . '</td>
+                                          <td>' . $motorAdatok['evjarat'] . '</td>
+                                          <td>' . $motorAdatok['allapot'] . '</td>
                                         </tr>
                                         <tr>
                                           <th class="tablazat_cimek"><p class="adat-parag">Köbcenti</p><p class="adat-parag index_szoveg">(cm<sup>3</sup>):</p></th>
@@ -150,17 +152,17 @@
                                           <th class="tablazat_cimek"><p class="adat-parag">Nálunk:</p></th>
                                         </tr>
                                         <tr>
-                                          <td>'.$motorAdatok['kobcenti'].'</td>
-                                          <td>'.$motorAdatok['jogositvany'].'</td>
-                                          <td>'.$motorAdatok['kW'].'</td>
-                                          <td>'.$motorAdatok['nalunk'].'</td>
+                                          <td>' . $motorAdatok['kobcenti'] . '</td>
+                                          <td>' . $motorAdatok['jogositvany'] . '</td>
+                                          <td>' . $motorAdatok['kW'] . '</td>
+                                          <td>' . $motorAdatok['nalunk'] . '</td>
                                         </tr>
                                     </table> ';
-                        echo '</div>';
-                    echo '</div>';
-                    echo '<div id="vasarlas_div_ar" class="tablazat_ar">'.$motorAdatok['ar'].' Ft</div>';
-                    echo '</div>';
-                }
+                echo '</div>';
+                echo '</div>';
+                echo '<div id="vasarlas_div_ar" class="tablazat_ar">' . $motorAdatok['ar'] . ' Ft</div>';
+                echo '</div>';
+            }
             ?>
         </div>
     </div>
